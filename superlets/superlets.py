@@ -39,9 +39,11 @@ def adaptive_superlet_transform(signal, freqs, sampling_freq: int, base_cycle: i
         signal (jnp.ndarray): 1D array containing the signal data
         freqs (jnp.ndarray): 1D sorted array containing the frequencies to compute the wavelets at
         sampling_freq (int): Sampling frequency of the signal 
+
         base_cycle (int): The number of cycles corresponding to order=1
         min_order (int): The minimum upper limit of orders to be used for a frequency in the adaptive superlet.
         max_order (int): The maximum upper limit of orders to be used for a frequency in the adaptive superlet.
+        
         eps (float, optional): Epsilon value to be used for numerical stability in the geometric mean. Defaults to 1e-12.
         mode (str, optional): "add" or "mul", corresponding to the use of additive or multiplicative adaptive superlets. Defaults to "mul".
 
