@@ -1,6 +1,6 @@
 # Superlets
 
-This repository provides an unofficial JAX/Python implementation of the Superlets algorithm introduced in [Time-frequency super-resolution with superlets](https://www.nature.com/articles/s41467-020-20539-9), originally in the context of neuroscience/optogenetics data. The original MATLAB implementation can be found [here](https://github.com/TransylvanianInstituteOfNeuroscience/Superlets).
+This repository provides an unofficial JAX/Python implementation of the Superlets algorithm introduced in [Time-frequency super-resolution with superlets](https://www.nature.com/articles/s41467-020-20539-9) (Moca et. al., 2021), originally in the context of neuroscience/optogenetics data. The original MATLAB implementation can be found [here](https://github.com/TransylvanianInstituteOfNeuroscience/Superlets).
 
 ### Demo
 In time-frequency analysis, we convert a signal into a time-frequency representation, where we want to identify how "strongly" each frequency component is activated at each timestep. Due to the [Gabor limit](https://en.wikipedia.org/wiki/Uncertainty_principle#Signal_processing), there are fundamental limitations to how precise our estimates can be: higher frequency precision requires trading off precision in time, and vice versa. In wavelet analysis, this is typically controlled by the number of cycles used in each wavelet. 
@@ -19,3 +19,6 @@ However, the proposed solution in the superlets paper is that Wavelet transforms
 
 #### Note
 This algorithm uses a non-standard normalization for the wavelets used; typically, the square of the wavelets are normalized to a value of 1, here the absolute value is. The authors provide a justification for this in the [supplementary information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-020-20539-9/MediaObjects/41467_2020_20539_MOESM1_ESM.pdf) on page 7. Both figures above here use absolute value normalization.
+
+#### References
+Moca, V. V., Bârzan, H., Nagy-Dăbâcan, A., & Mureșan, R. C. (2021). Time-frequency super-resolution with superlets. Nature Communications, 12(1), 337. https://doi.org/10.1038/s41467-020-20539-9
