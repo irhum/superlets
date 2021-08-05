@@ -5,7 +5,7 @@ This repository provides an unofficial JAX/Python implementation of the Superlet
 ### Demo
 In time-frequency analysis, we convert a signal into a time-frequency representation, where we want to identify how "strongly" each frequency component is activated at each timestep. Due to the [Gabor limit](https://en.wikipedia.org/wiki/Uncertainty_principle#Signal_processing), there are fundamental limitations to how precise our estimates can be: higher frequency precision requires trading off precision in time, and vice versa. In wavelet analysis, this is typically controlled by the number of cycles used in each wavelet. 
 
-For instance, if we have the following signal (similar to that of Fig. 3 in the paper):
+For instance, suppose we have the following test signal (similar to that of Fig. 3 in the paper):
 
 ![Signal](../images/signal.png?raw=true)
 
@@ -13,7 +13,7 @@ We can obtain three different scalograms by varying the number of cycles used pe
 
 ![Wavelet](../images/wavelet.png?raw=true)
 
-However, the proposed solution in the superlets paper is that Wavelet transforms aren't Pareto optimal (that is, you can improve on *both* time and frequency without having to make trade-offs), and it can be improved on by taking the geometric mean of wavelets of different cycles, resulting in the following:
+However, the proposed solution in the superlets paper is that Wavelet transforms aren't Pareto optimal (that is, you can improve on *both* time and frequency without having to make trade-offs), and can be improved by taking the geometric mean of wavelets of different cycles, resulting in the following:
 
 ![Superlet](../images/superlet.png?raw=true)
 
