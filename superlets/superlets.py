@@ -32,7 +32,22 @@ def norm_geomean(X, root_pows, eps):
     return jnp.exp(X / jnp.array(root_pows).reshape(-1, 1))
 
 # @jax.jit 
-def adaptive_superlet_transform(signal, freqs, sampling_freq, base_cycle: int, min_order: int, max_order: int, eps=1e-12, mode="mul"):
+def adaptive_superlet_transform(signal, freqs, sampling_freq: int, base_cycle: int, min_order: int, max_order: int, eps=1e-12, mode="mul"):
+    """Computes the adaptive superlet transform of the provided signal
+
+    Args:
+        signal (jnp.ndarray): 1D array containing the signal data
+        freqs (jnp.ndarray): 1D sorted array containing the frequencies to compute the wavelets at
+        sampling_freq (int): Sampling frequency of the signal 
+        base_cycle (int): The number of cycles corresponding to order=1
+        min_order (int): The minimum upper limit of orders to be used for a frequency in the adaptive superlet.
+        max_order (int): The maximum upper limit of orders to be used for a frequency in the adaptive superlet.
+        eps (float, optional): Epsilon value to be used for numerical stability in the geometric mean. Defaults to 1e-12.
+        mode (str, optional): "add" or "mul", corresponding to the use of additive or multiplicative adaptive superlets. Defaults to "mul".
+
+    Returns:
+        jnp.ndarray: 2D array (Frequency x Time) representing the computed scalogram
+    """
     cycles = order_to_cycles(base_cycle, max_order, mode)
     orders = get_order(freqs, min(freqs), max(freqs), min_order, max_order)
     mask = get_mask(orders, max_order)
