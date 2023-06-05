@@ -55,6 +55,7 @@ def adaptive_superlet_transform(signal, freqs, sampling_freq: int, base_cycle: i
     mask = get_mask(orders, max_order)
 
     out = superlet_transform_helper(signal, freqs, cycles, sampling_freq)
-    out = jax.ops.index_update(out, mask.T, 1)
+    # out = jax.ops.index_update(out, mask.T, 1) # deprecated
+    out = out.at[mask.T].set(1)
 
     return norm_geomean(out, orders, eps)
