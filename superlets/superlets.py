@@ -19,7 +19,7 @@ def order_to_cycles(base_cycle, max_order, mode):
     else: raise ValueError("mode should be one of \"mul\" or \"add\"")
 
 def get_order(f, f_min: int, f_max: int, o_min: int, o_max: int):
-    return o_min + round((o_max - o_min) * (f - f_min) / (f_max - f_min))
+    return o_min + jnp.round((o_max - o_min) * (f - f_min) / (f_max - f_min))
 
 @partial(jax.vmap, in_axes=(0, None))
 def get_mask(order, max_order):
@@ -55,6 +55,6 @@ def adaptive_superlet_transform(signal, freqs, sampling_freq: int, base_cycle: i
     mask = get_mask(orders, max_order)
 
     out = superlet_transform_helper(signal, freqs, cycles, sampling_freq)
-    out = jax.ops.index_update(out, mask.T, 1)
+    out = out.at[mask.T].set(1)
 
     return norm_geomean(out, orders, eps)
