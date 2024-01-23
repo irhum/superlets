@@ -22,4 +22,4 @@ def cxmorelet(freq, cycles, sampling_freq):
 @partial(jax.vmap, in_axes=(None, 0, None, None))
 def wavelet_transform(signal, freq, cycles, sampling_freq):    
     wavelet = cxmorelet(freq, cycles, sampling_freq)
-    return jax.scipy.signal.convolve(signal, wavelet, mode="same")
+    return jax.scipy.signal.fftconvolve(signal, wavelet, mode="same")
